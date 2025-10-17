@@ -1,4 +1,4 @@
-// fn.stat_pos_cvt_entity2world(entity_pos, models_scale) => world_pos 实体转相对世界坐标（转换的坐标，模型缩放）
+// fn.mc_cvt_pos_entity2world(entity_pos, models_scale) => world_pos 实体转相对世界坐标（转换的坐标，模型缩放）
 
 t.pos = args[0];
 t.models_scale = args[1];
