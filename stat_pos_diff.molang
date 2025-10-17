@@ -20,7 +20,7 @@ t.now_world_pos = fn.math_ext_vector_3(
 
 
 t.dpos = fn.stat_pos_diff_dpos(t.now_world_pos, t.mark_world_pos); //计算差值
-t.entity_pos = fn.stat_pos_cvt_world2entity(t.dpos, t.models_scale); // 坐标转换
+t.entity_pos = fn.mc_cvt_pos_world2entity(t.dpos, t.models_scale); // 坐标转换
 
 // 还原结构体(仅更改)
 t.result.entity_pos_x = t.entity_pos.x;

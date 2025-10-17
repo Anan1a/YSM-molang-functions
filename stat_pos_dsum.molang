@@ -12,7 +12,7 @@ t.world_cdpos = fn.math_ext_vector_3(
     );
 
 t.world_cdpos = fn.stat_pos_dsum_cdpos(t.world_cdpos); // 坐标抵消
-t.entity_pos = fn.stat_pos_cvt_world2entity(t.world_cdpos, t.models_scale); // 坐标转换
+t.entity_pos = fn.mc_cvt_pos_world2entity(t.world_cdpos, t.models_scale); // 坐标转换
 t.entity_pos = fn.math_ext_vector_3_sdiv(t.entity_pos, 2);
 
 // 还原结构体(仅更改)
