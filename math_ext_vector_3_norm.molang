@@ -1,0 +1,16 @@
+// fn.math_ext_vector_3_norm(vector1) => vector_3 三维向量归一化
+
+t.v1 = args[0];
+
+// 归一化
+t.length = fn.math_ext_vector_3_len(t.v1);
+
+t.result = (t.length > 0.000000000001) ? 
+    fn.math_ext_vector_3(
+        t.v1.x / t.length,
+        t.v1.y / t.length,
+        t.v1.z / t.length
+    ) :
+    fn.math_ext_vector_3_0;
+
+return t.result;

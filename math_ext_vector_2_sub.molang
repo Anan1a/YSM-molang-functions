@@ -1,0 +1,12 @@
+// fn.vector2_ope_sub(vector1, vector2) => vector_2 二维向量减法
+
+t.v1 = args[0];
+t.v2 = args[1];
+
+// 减法
+t.result = fn.math_ext_vector_2(
+    t.v1.x - t.v2.x,
+    t.v1.y - t.v2.y
+);
+
+return t.result;

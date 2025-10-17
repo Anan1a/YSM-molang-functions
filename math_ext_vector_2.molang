@@ -1,0 +1,6 @@
+// fn.math_ext_vector_2(x, y) => vector_2 二维结构体
+
+t.result.x = args[0];
+t.result.y = args[1];
+
+return t.result;

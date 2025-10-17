@@ -1,0 +1,13 @@
+// fn.math_ext_vector_3_cross(vector1, vector2) => vector_3 三维向量叉乘
+
+t.v1 = args[0];
+t.v2 = args[1];
+
+// 叉乘
+t.result = fn.math_ext_vector_3(
+    t.v1.y * t.v2.z - t.v1.z * t.v2.y,
+    t.v1.z * t.v2.x - t.v1.x * t.v2.z,
+    t.v1.x * t.v2.y - t.v1.y * t.v2.x
+);
+
+return t.result;

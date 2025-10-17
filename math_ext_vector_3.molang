@@ -1,0 +1,7 @@
+// fn.math_ext_vector_3(x, y, z) => vector_3 三维结构体
+
+t.result.x = args[0];
+t.result.y = args[1];
+t.result.z = args[2];
+
+return t.result;

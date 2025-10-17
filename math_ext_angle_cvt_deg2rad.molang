@@ -1,0 +1,7 @@
+// fn.math_ext_angle_cvt_deg2rad(degrees) => radians 弧度转角度（弧度）
+
+t.degrees = args[0];
+
+t.radians = (t.degrees * math.pi) / 180;
+
+return t.radians;

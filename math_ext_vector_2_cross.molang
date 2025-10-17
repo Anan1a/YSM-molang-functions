@@ -1,0 +1,9 @@
+// fn.math_ext_vector_2_cross(vector1, vector2) => number 二维向量叉乘
+
+t.v1 = args[0];
+t.v2 = args[1];
+
+// 叉乘
+t.result = t.v1.x * t.v2.y - t.v1.y * t.v2.x;
+
+return t.result;

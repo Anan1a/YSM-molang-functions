@@ -1,0 +1,5 @@
+// fn.math_ext_vector_3_0 => vector_3 三维0向量
+
+t.result = fn.math_ext_vector_3(0, 0, 0);
+
+return t.result;

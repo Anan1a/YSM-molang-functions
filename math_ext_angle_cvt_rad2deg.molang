@@ -1,0 +1,7 @@
+// fn.math_ext_angle_rad2deg(radians) => degrees 弧度转角度（弧度）
+
+t.radians = args[0];
+
+t.degrees = t.radians * (180 / math.pi);
+
+return t.degrees;

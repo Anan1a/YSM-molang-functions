@@ -1,0 +1,5 @@
+// fn.math_ext_vector_2_0 => vector_2 二维0向量
+
+t.result = fn.math_ext_vector_2(0, 0);
+
+return t.result;

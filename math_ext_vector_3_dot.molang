@@ -1,0 +1,9 @@
+// fn.math_ext_vector_3_dot(vector1, vector2) => number 三维向量点乘
+
+t.v1 = args[0];
+t.v2 = args[1];
+
+// 点乘
+t.result = t.v1.x * t.v2.x + t.v1.y * t.v2.y + t.v1.z * t.v2.z;
+
+return t.result;

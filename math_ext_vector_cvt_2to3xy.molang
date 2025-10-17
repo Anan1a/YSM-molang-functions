@@ -1,0 +1,6 @@
+// fn.math_ext_vector_cvt_2to3xy(vector_2) => vector_3 二维结构体
+
+t.vector_2 = args[0];
+t.vector_3 = fn.math_ext_vector_3(t.vector_2.x, t.vector_2.y, 0);
+
+return t.vector_3;

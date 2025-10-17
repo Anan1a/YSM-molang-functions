@@ -1,0 +1,15 @@
+// fn.math_ext_vector_3_sdiv(vector1, number) => vector_3 三维向量标量除法
+
+t.v1 = args[0];
+t.num = args[1];
+
+// 标量除法
+t.result = t.num > 0.000000000001 ?
+    fn.math_ext_vector_3(
+        t.v1.x / t.num,
+        t.v1.y / t.num,
+        t.v1.z / t.num
+    ) : 
+    fn.math_ext_vector_3_0;
+
+return t.result;

@@ -1,0 +1,12 @@
+// fn.math_ext_vector_2_smul(vector1, number) => vector_2 二维向量标量乘法
+
+t.v1 = args[0];
+t.num = args[1];
+
+// 标量乘法
+t.result = fn.math_ext_vector_2(
+    t.v1.x * t.num,
+    t.v1.y * t.num
+);
+
+return t.result;

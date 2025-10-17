@@ -1,0 +1,8 @@
+// fn.math_ext_vector_3_len(vector1) => number 三维向量长度
+
+t.v1 = args[0];
+
+// 长度
+t.result = math.sqrt(t.v1.x * t.v1.x + t.v1.y * t.v1.y + t.v1.z * t.v1.z);
+
+return t.result;
