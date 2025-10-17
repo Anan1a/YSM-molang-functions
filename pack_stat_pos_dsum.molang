@@ -1,0 +1,41 @@
+// fn.stat_pos_dsum(pos_dsum) 解算差值累计（坐标组，模型缩放）
+
+t.result = args[0];
+
+// 解析结构体(仅需要)
+t.world_cdpos.x = t.result.world_cdpos_x;
+t.world_cdpos.y = t.result.world_cdpos_y;
+t.world_cdpos.z = t.result.world_cdpos_z;
+
+
+// 坐标抵消
+t.posd.x = - query.position_delta(0);
+t.posd.y = - query.position_delta(1);
+t.posd.z = + query.position_delta(2);
+
+t.world_cdpos.x = t.world_cdpos.x - t.posd.x;
+t.world_cdpos.y = t.world_cdpos.y - t.posd.y;
+t.world_cdpos.z = t.world_cdpos.z - t.posd.z;
+
+
+// 坐标转换
+t.tk_scale = 16/v.config.models_scale; // 缩放系数
+
+t.entity_pos.x = t.world_cdpos.x * t.tk_scale;
+t.entity_pos.y = t.world_cdpos.y * t.tk_scale;
+t.entity_pos.z = t.world_cdpos.z * t.tk_scale;
+
+
+t.entity_pos.x = t.entity_pos.x / 2;
+t.entity_pos.y = t.entity_pos.y / 2;
+t.entity_pos.z = t.entity_pos.z / 2;
+
+// 还原结构体(仅更改)
+t.result.world_cdpos_x = t.world_cdpos.x;
+t.result.world_cdpos_y = t.world_cdpos.y;
+t.result.world_cdpos_z = t.world_cdpos.z;
+t.result.entity_pos_x = t.entity_pos.x;
+t.result.entity_pos_y = t.entity_pos.y;
+t.result.entity_pos_z = t.entity_pos.z;
+
+return t.result;

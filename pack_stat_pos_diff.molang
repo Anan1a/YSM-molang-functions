@@ -1,0 +1,38 @@
+// fn.pack_stat_pos_diff(pos_diff) 解算差值（坐标组，模型缩放）（打包）
+
+t.result = args[0];
+
+t.models_scale = v.config.models_scale; // 获取模型缩放
+
+// 解析结构体(仅需要)
+t.mark_world_pos.x = t.result.mark_world_pos_x;
+t.mark_world_pos.y = t.result.mark_world_pos_y;
+t.mark_world_pos.z = t.result.mark_world_pos_z;
+
+
+// 实体世界坐标(实时)
+t.now_world_pos.x = query.position(0);
+t.now_world_pos.y = query.position(1);
+t.now_world_pos.z = query.position(2);
+
+
+//计算差值
+t.dpos.x = t.mark_world_pos.x - t.now_world_pos.x;
+t.dpos.y = t.mark_world_pos.y - t.now_world_pos.y;
+t.dpos.z = -(t.mark_world_pos.z - t.now_world_pos.z);
+
+
+// 坐标转换
+t.tk_scale = 16/v.config.models_scale; // 缩放系数
+
+t.entity_pos.x = t.dpos.x * t.tk_scale;
+t.entity_pos.y = t.dpos.y * t.tk_scale;
+t.entity_pos.z = t.dpos.z * t.tk_scale;
+
+
+// 还原结构体(仅更改)
+t.result.entity_pos_x = t.entity_pos.x;
+t.result.entity_pos_y = t.entity_pos.y;
+t.result.entity_pos_z = t.entity_pos.z;
+
+return t.result;
