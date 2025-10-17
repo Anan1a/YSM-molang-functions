@@ -1,0 +1,11 @@
+// fn.config 配置
+
+v.config.models_scale = 0.7; // 模型缩放；默认：0.7
+
+v.config.sneak_length = 3; // 潜行抵消总长度；默认：3
+v.config.sneak_anim_rate1 = 0.08; // 潜行抵消速率；默认：0.08
+v.config.sneak_anim_rate2 = 0.08; // 潜行恢复抵消速率；默认：0.08
+
+q.debug_output('配置成功 ', v.config);
+
+v.config.ok = true;

@@ -1,0 +1,3 @@
+// fn.config 配置
+
+// v.roaming.config_models_scale = 0.7; // 模型缩放；默认：0.7
