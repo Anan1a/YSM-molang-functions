@@ -1,0 +1,10 @@
+// fn.stat_pos_cvt_world2entity(world_pos, models_scale) => entity_pos 相对世界转实体坐标（转换的坐标，模型缩放）
+
+t.pos = args[0];
+t.models_scale = args[1];
+
+t.tk_scale = 16/t.models_scale; // 缩放系数
+
+t.entity_pos = fn.math_ext_vector_3_smul(t.pos, t.tk_scale); // 坐标缩放
+
+return t.entity_pos;

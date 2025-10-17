@@ -1,0 +1,13 @@
+// fn.stat_pos_dsum_cdpos(cdpos) => cdpos 差值累计
+
+t.cdpos = args[0];
+
+t.posd = fn.math_ext_vector_3(
+    - query.position_delta(0),
+    - query.position_delta(1),
+    + query.position_delta(2)
+);
+
+t.cdpos = fn.math_ext_vector_3_sub(t.cdpos, t.posd);
+
+return t.cdpos;

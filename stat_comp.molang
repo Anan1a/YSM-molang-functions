@@ -1,0 +1,19 @@
+// fn.stat_comp(comp) 补偿
+
+t.result = args[0];
+
+// 解析结构体(仅需要)
+t.entity_pos_sneaking = t.result.entity_pos_sneaking;
+
+t.entity_rot_body = -query.body_y_rotation; // 转身抵消
+
+t.sneak_anim_rate1 = v.config.sneak_anim_rate1 / v.config.models_scale; // 潜行抵消速率
+t.sneak_anim_rate2 = v.config.sneak_anim_rate2 / v.config.models_scale; // 潜行恢复抵消速率
+
+t.entity_pos_sneaking = math.clamp(t.entity_pos_sneaking + (query.is_sneaking ? t.sneak_anim_rate1 : -t.sneak_anim_rate2), 0, v.config.sneak_length); //潜行抵消，平滑线性动画
+
+// 还原结构体(仅更改)
+t.result.entity_rot_body = t.entity_rot_body;
+t.result.entity_pos_sneaking = t.entity_pos_sneaking;
+
+return t.result;

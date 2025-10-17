@@ -1,0 +1,26 @@
+// fn.stat_pos_dsum(pos_dsum) 解算差值累计（坐标组，模型缩放）
+
+t.result = args[0];
+
+t.models_scale = v.config.models_scale; // 获取模型缩放
+
+// 解析结构体(仅需要)
+t.world_cdpos = fn.math_ext_vector_3(
+    t.result.world_cdpos_x, 
+    t.result.world_cdpos_y, 
+    t.result.world_cdpos_z
+    );
+
+t.world_cdpos = fn.stat_pos_dsum_cdpos(t.world_cdpos); // 坐标抵消
+t.entity_pos = fn.stat_pos_cvt_world2entity(t.world_cdpos, t.models_scale); // 坐标转换
+t.entity_pos = fn.math_ext_vector_3_sdiv(t.entity_pos, 2);
+
+// 还原结构体(仅更改)
+t.result.world_cdpos_x = t.world_cdpos.x;
+t.result.world_cdpos_y = t.world_cdpos.y;
+t.result.world_cdpos_z = t.world_cdpos.z;
+t.result.entity_pos_x = t.entity_pos.x;
+t.result.entity_pos_y = t.entity_pos.y;
+t.result.entity_pos_z = t.entity_pos.z;
+
+return t.result;

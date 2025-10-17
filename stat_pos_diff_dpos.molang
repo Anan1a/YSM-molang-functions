@@ -1,0 +1,9 @@
+// fn.stat_pos_diff_dpos(pos_now, pos_mark) => dpos 差值(现在位置，记录位置)
+
+t.pos_now = args[0];
+t.pos_mark = args[1];
+
+t.dpos = fn.math_ext_vector_3_sub(t.pos_mark, t.pos_now);
+t.dpos.z = -t.dpos.z;
+
+return t.dpos;

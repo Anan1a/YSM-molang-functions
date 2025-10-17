@@ -1,0 +1,11 @@
+// fn.stat_pos_diff_mark(pos_diff) 记录位置（坐标组）
+
+t.result = args[0];
+
+// 还原结构体(仅更改)
+
+t.result.mark_world_pos_x = query.position(0);
+t.result.mark_world_pos_y = query.position(1);
+t.result.mark_world_pos_z = query.position(2);
+
+return t.result;

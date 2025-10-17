@@ -1,0 +1,16 @@
+// fn.stat_pos_reload(pos) 重置位置（坐标组）
+
+t.result = args[0];
+
+// 还原结构体(仅更改)
+t.result.mark_world_pos_x = 0;
+t.result.mark_world_pos_y = 0;
+t.result.mark_world_pos_z = 0;
+t.result.world_cdpos_x = 0;
+t.result.world_cdpos_y = 0;
+t.result.world_cdpos_z = 0;
+t.result.entity_pos_x = 0;
+t.result.entity_pos_y = 0;
+t.result.entity_pos_z = 0;
+
+return t.result;
