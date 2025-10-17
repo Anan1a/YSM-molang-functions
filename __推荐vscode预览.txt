@@ -1,0 +1,2 @@
+推荐使用vscode预览，它支持md文件预览
+官网：https://code.visualstudio.com/
