@@ -4,13 +4,9 @@ t.v1 = args[0];
 t.v2 = args[1];
 
 // 分量除法
-t.result =  (
-        t.v2.x *t.v2.x > 0.000000000001 && 
-        t.v2.y *t.v2.y > 0.000000000001) ? 
-    fn.math_ext_vector_2(
-        t.v1.x / t.v2.x,
-        t.v1.y / t.v2.y
-    ) : 
-    fn.math_ext_vector_2_0;
+t.result = fn.math_ext_vector_2(
+    t.v1.x / t.v2.x,
+    t.v1.y / t.v2.y
+);
 
 return t.result;

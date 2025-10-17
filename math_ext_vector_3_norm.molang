@@ -5,12 +5,6 @@ t.v1 = args[0];
 // 归一化
 t.length = fn.math_ext_vector_3_len(t.v1);
 
-t.result = (t.length > 0.000000000001) ? 
-    fn.math_ext_vector_3(
-        t.v1.x / t.length,
-        t.v1.y / t.length,
-        t.v1.z / t.length
-    ) :
-    fn.math_ext_vector_3_0;
+t.result = fn.math_ext_vector_3_sdiv(t.v1, t.length);
 
 return t.result;
