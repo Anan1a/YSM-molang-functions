@@ -2,11 +2,9 @@
 
 t.cdpos = args[0];
 
-t.posd = fn.math_ext_vector_3(
-    - query.position_delta(0),
-    - query.position_delta(1),
-    + query.position_delta(2)
-);
+t.posd = fn.mc_get_worldposd;
+t.corr = fn.math_ext_vector_3(-1, -1, 1); // 修正参数
+t.posd = fn.math_ext_vector_3_cmul(t.posd, t.corr);
 
 t.cdpos = fn.math_ext_vector_3_sub(t.cdpos, t.posd);
 

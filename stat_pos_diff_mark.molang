@@ -3,9 +3,9 @@
 t.result = args[0];
 
 // 还原结构体(仅更改)
-
-t.result.mark_world_pos_x = query.position(0);
-t.result.mark_world_pos_y = query.position(1);
-t.result.mark_world_pos_z = query.position(2);
+t.wpos = fn.mc_get_worldpos;
+t.result.mark_world_pos_x = t.wpos.x;
+t.result.mark_world_pos_y = t.wpos.y;
+t.result.mark_world_pos_z = t.wpos.z;
 
 return t.result;
