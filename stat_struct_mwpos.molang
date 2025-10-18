@@ -1,0 +1,7 @@
+// fn.stat_struct_mwpos(x, y, z) => mark_world_pos 三维结构体
+
+t.result.mark_world_pos_x = args[0];
+t.result.mark_world_pos_y = args[1];
+t.result.mark_world_pos_z = args[2];
+
+return t.result;

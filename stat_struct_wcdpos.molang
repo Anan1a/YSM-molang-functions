@@ -1,0 +1,7 @@
+// fn.stat_struct_wcdpos(x, y, z) => world_cdpos 三维结构体
+
+t.result.world_cdpos_x = args[0];
+t.result.world_cdpos_y = args[1];
+t.result.world_cdpos_z = args[2];
+
+return t.result;

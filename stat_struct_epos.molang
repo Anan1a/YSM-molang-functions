@@ -1,0 +1,7 @@
+// fn.stat_struct_epos(x, y, z) => entity_pos 三维结构体
+
+t.result.entity_pos_x = args[0];
+t.result.entity_pos_y = args[1];
+t.result.entity_pos_z = args[2];
+
+return t.result;

@@ -13,3 +13,9 @@
 例：`stat_pos`
 
 [详情](./stat_pos__README.md)
+
+## 自定义结构体转换函数（struct）
+以`struct`做前缀  
+例：`stat_struct`
+
+[详情](./stat_struct__README.md)
