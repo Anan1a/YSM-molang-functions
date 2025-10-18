@@ -1,0 +1,11 @@
+// fn.mc_get_absPos(name) => vector_3 获取绝对坐标（组名）
+
+t.name = args[0];
+
+t.point = fn.math_ext_vector_3(
+    ysm.bone_pivot_abs(t.name).x,
+    ysm.bone_pivot_abs(t.name).y,
+    ysm.bone_pivot_abs(t.name).z
+);
+
+return t.point;
