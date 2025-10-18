@@ -1,4 +1,4 @@
-// fn.mc_get_worldposd 获取在世界上的坐标自上次运动的坐标差值
+// fn.mc_get_worldPosDelta 获取在世界上的坐标自上次运动的坐标差值
 
 t.result = fn.math_ext_vector_3(
     query.position_delta(0),
