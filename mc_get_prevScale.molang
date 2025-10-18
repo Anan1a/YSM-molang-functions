@@ -1,0 +1,11 @@
+// fn.mc_get_prevScale(name) => vector_3 获取上一帧缩放（组名）
+
+t.name = args[0];
+
+t.point = fn.math_ext_vector_3(
+    ysm.bone_scale(t.name).x,
+    ysm.bone_scale(t.name).y,
+    ysm.bone_scale(t.name).z
+);
+
+return t.point;
