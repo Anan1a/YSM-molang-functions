@@ -12,12 +12,7 @@ t.mark_world_pos = fn.math_ext_vector_3(
     );
 
 // 实体世界坐标(实时)
-t.now_world_pos = fn.math_ext_vector_3(
-    query.position(0), 
-    query.position(1), 
-    query.position(2)
-    );
-
+t.now_world_pos = fn.mc_get_worldpos;
 
 t.dpos = fn.stat_pos_diff_dpos(t.now_world_pos, t.mark_world_pos); //计算差值
 t.entity_pos = fn.mc_cvt_pos_world2entity(t.dpos, t.models_scale); // 坐标转换
