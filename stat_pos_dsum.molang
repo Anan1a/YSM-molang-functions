@@ -16,11 +16,16 @@ t.entity_pos = fn.mc_cvt_pos_world2entity(t.world_cdpos, t.models_scale); // 坐
 t.entity_pos = fn.math_ext_vector_3_sdiv(t.entity_pos, 2);
 
 // 还原结构体(仅更改)
-t.result.world_cdpos_x = t.world_cdpos.x;
-t.result.world_cdpos_y = t.world_cdpos.y;
-t.result.world_cdpos_z = t.world_cdpos.z;
-t.result.entity_pos_x = t.entity_pos.x;
-t.result.entity_pos_y = t.entity_pos.y;
-t.result.entity_pos_z = t.entity_pos.z;
+t.result = fn.stat_struct_wcdpos(
+    t.world_cdpos.x,
+    t.world_cdpos.y,
+    t.world_cdpos.z
+);
+t.result = fn.stat_struct_epos(
+    t.entity_pos.x,
+    t.entity_pos.y,
+    t.entity_pos.z
+);
+
 
 return t.result;
