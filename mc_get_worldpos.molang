@@ -1,0 +1,9 @@
+// fn.mc_get_worldpos 获取在世界上的坐标
+
+t.result = fn.math_ext_vector_3(
+    query.position(0),
+    query.position(1),
+    query.position(2)
+);
+
+return t.result;
