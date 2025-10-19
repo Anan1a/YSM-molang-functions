@@ -1,4 +1,4 @@
-// fn.math_ext_angle_vector2deg(vector1) => degrees 根据向量计算旋转角度
+// fn.math_ext_angle_vector2degXY(vector1) => degrees 根据向量计算旋转角度
 
 // x => pitch(绕x轴旋转，俯仰)
 // y => yaw(绕y轴旋转，偏航)
