@@ -9,3 +9,9 @@
 例：`math_ext_angle_cvt`
 
 [详情](./math_ext_angle_cvt__README.md)
+
+## 三角形计算库（cvt）
+以`triangle`做前缀  
+例：`math_ext_angle_triangle`
+
+[详情](./math_ext_angle_triangle__README.md)
