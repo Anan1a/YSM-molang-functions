@@ -15,6 +15,15 @@
 
 [详情](./config__README.md)
 
+# 反向动力学模块（ik）
+以`ik`做前缀  
+例：`ik`
+
+[详情](./ik__README.md)
+
+## 数学扩展函数库（math_ext）
+以`math_ext`做前缀  
+例：`math_ext`
 # 数学函数库（math）
 以`math`做前缀  
 例：`math`
