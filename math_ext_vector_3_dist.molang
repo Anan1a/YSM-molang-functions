@@ -1,4 +1,4 @@
-// fn.math_ext_vector_3_dist(vector1, vector1) => number 两向量计算距离
+// fn.math_ext_vector_3_dist(vector1, vector2) => number 两向量计算距离
 
 t.v1 = args[0];
 t.v2 = args[1];
