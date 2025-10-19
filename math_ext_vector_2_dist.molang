@@ -1,0 +1,9 @@
+// fn.math_ext_vector_2_dist(vector1, vector1) => number 两向量计算距离
+
+t.v1 = args[0];
+t.v2 = args[1];
+
+t.diff = fn.math_ext_vector_2_sub(t.v2, t.v1);
+t.result = fn.math_ext_vector_2_len(t.diff);
+
+return t.result;
