@@ -15,11 +15,11 @@
 
 [详情](./config__README.md)
 
-## 数学扩展函数库（math_ext）
-以`math_ext`做前缀  
-例：`math_ext`
+# 数学函数库（math）
+以`math`做前缀  
+例：`math`
 
-[详情](./math_ext__README.md)
+[详情](./math__README.md)
 
 ## 游戏函数库（mc）（游戏相关函数）
 以`mc`做前缀  

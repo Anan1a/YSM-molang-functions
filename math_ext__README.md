@@ -1,8 +1,8 @@
-# 数学扩展函数库（math_ext）
-以`math_ext`做前缀  
+# 扩展函数库（ext）
+以`ext`做前缀  
 例：`math_ext`
 
-[返回](./_README.md)
+[返回](./math__README.md)
 
 ## 角度库（angle）
 以`angle`做前缀  
