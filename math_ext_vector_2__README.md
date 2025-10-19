@@ -9,6 +9,7 @@
 |cdiv|分量除法|math_ext_vector_2_cdiv(vector1, vector2)|vector_2|
 |cmul|分量乘法|math_ext_vector_2_cmul(vector1, vector2)|vector_2|
 |cross|叉乘|math_ext_vector_2_cross(vector1, vector2)|number|
+|dist|距离|math_ext_vector_2_dist(vector1, vector2)|number|
 |dot|点乘|math_ext_vector_2_dot(vector1, vector2)|number|
 |len|长度|math_ext_vector_2_len(vector1)|number|
 |norm|归一化（依赖`len`）|math_ext_vector_2_norm(vector1)|vector_2|
