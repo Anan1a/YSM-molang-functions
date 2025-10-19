@@ -1,0 +1,29 @@
+// fn.math_ext_angle_vector2deg(vector1) => degrees 根据向量计算旋转角度
+
+// x => pitch(绕x轴旋转，俯仰)
+// y => yaw(绕y轴旋转，偏航)
+// z => roll(绕z轴旋转，横滚)
+
+t.vector_diff = args[0];
+
+// xy轴旋转
+t.yaw_rad = -math.atan2(t.vector_diff.x, -t.vector_diff.z);
+
+t.v_xz = fn.math_ext_vector_2(t.vector_diff.x, t.vector_diff.z);
+t.len_xz = fn.math_ext_vector_2_len(t.v_xz);
+t.pitch_rad = -math.atan2(t.vector_diff.y, t.len_xz);
+
+t.roll_rad = 0;
+
+// 弧度转角度
+t.pitch_deg = fn.math_ext_angle_cvt_rad2deg(t.pitch_rad);
+t.yaw_deg = fn.math_ext_angle_cvt_rad2deg(t.yaw_rad);
+t.roll_deg = fn.math_ext_angle_cvt_rad2deg(t.roll_rad);
+
+.angle_deg = math_ext_vector_3(
+    t.pitch_deg-90,
+    t.yaw_deg,
+    t.roll_deg
+);
+
+return t.angle_deg;

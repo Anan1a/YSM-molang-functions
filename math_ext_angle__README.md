@@ -5,6 +5,7 @@
 |前缀|操作|函数|返回值|
 |---|---|---|---|
 |triangleDag|三角形角度计数|math_ext_angle_triangleDag(opp, adj1, adj2)|degrees|
+|vector2deg|向量计算角度|math_ext_angle_vector2deg(vector1)|degrees|
 
 [返回](./math_ext__README.md)
 
