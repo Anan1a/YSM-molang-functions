@@ -1,0 +1,13 @@
+// fn.math_ext_angle_triangle_dag(opp, adj1, adj2) => degrees 三角形角度计数（对边，邻边， 邻边）
+
+t.opp = args[0];
+t.adj1 = args[1];
+t.adj2 = args[2];
+
+t.cos_val = (t.adj1 * t.adj1 + t.adj2 * t.adj2 - t.opp * t.opp) / (2 * t.adj1 * t.adj2); // 计算余弦值
+t.cos_val = math.clamp(t.cos_val, -1, 1); // 钳至范围
+
+t.angle_rad = math.acos(t.cos_val); // 反余弦转弧度
+t.angle_deg = fn.math_ext_angle_cvt_rad2deg(t.angle_rad); // 弧度转角度
+
+return t.angle_deg;
