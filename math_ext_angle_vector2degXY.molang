@@ -3,27 +3,34 @@
 // x => pitch(绕x轴旋转，俯仰)
 // y => yaw(绕y轴旋转，偏航)
 // z => roll(绕z轴旋转，横滚)
+// +x为右，-x为左，+y为上，-y为下，-z为前，+z为后
 
 t.vector_diff = args[0];
 
 // xy轴旋转
-t.yaw_rad = -math.atan2(t.vector_diff.x, -t.vector_diff.z);
-
 t.v_xz = fn.math_ext_vector_2(t.vector_diff.x, t.vector_diff.z);
-t.len_xz = fn.math_ext_vector_2_len(t.v_xz);
-t.pitch_rad = -math.atan2(t.vector_diff.y, t.len_xz);
+t.len_xz = fn.math_ext_vector_2_len(t.v_xz); //计算y平面投影线长度
 
-t.roll_rad = 0;
+
+// t.y_rad = -math.atan2(t.vector_diff.x, -t.vector_diff.z);
+
+t.y_rad = (t.len_xz > 0.000004) // 去噪声
+    ? -math.atan2(t.vector_diff.x, -t.vector_diff.z)
+    : 0;
+
+t.x_rad = -math.atan2(t.vector_diff.y, t.len_xz);
+
+t.z_rad = 0;
 
 // 弧度转角度
-t.pitch_deg = fn.math_ext_angle_cvt_rad2deg(t.pitch_rad);
-t.yaw_deg = fn.math_ext_angle_cvt_rad2deg(t.yaw_rad);
+t.x_deg = fn.math_ext_angle_cvt_rad2deg(t.x_rad);
+t.y_deg = fn.math_ext_angle_cvt_rad2deg(t.y_rad);
 t.roll_deg = fn.math_ext_angle_cvt_rad2deg(t.roll_rad);
 
-.angle_deg = math_ext_vector_3(
-    t.pitch_deg-90,
-    t.yaw_deg,
-    t.roll_deg
+t.angle_deg = fn.math_ext_vector_3(
+    t.x_deg-90,
+    t.y_deg,
+    t.z_deg
 );
 
 return t.angle_deg;
