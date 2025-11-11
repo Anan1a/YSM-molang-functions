@@ -1,8 +1,5 @@
 // fn.math_ext_angle_vector2degXZ(vector1) => degrees 根据向量计算旋转角度
 
-// x => pitch(绕x轴旋转，俯仰)
-// y => yaw(绕y轴旋转，偏航)
-// z => roll(绕z轴旋转，横滚)
 // +x为右，-x为左，+y为上，-y为下，-z为前，+z为后
 
 t.vector_diff = args[0];
