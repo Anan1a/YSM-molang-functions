@@ -1,4 +1,4 @@
-// fn.math_ext_angle_vector2degXY(vector1) => degrees 根据向量计算旋转角度
+// fn.math_ext_angle_vector2degXZ(vector1) => degrees 根据向量计算旋转角度
 
 // x => pitch(绕x轴旋转，俯仰)
 // y => yaw(绕y轴旋转，偏航)
@@ -9,7 +9,7 @@ t.vector_diff = args[0];
 
 // xy轴旋转
 t.v_xz = fn.math_ext_vector_2(t.vector_diff.x, t.vector_diff.z);
-t.len_xz = fn.math_ext_vector_2_len(t.v_xz); //计算y平面投影线长度
+t.len_xz = fn.math_ext_vector_2_len(t.v_xz); //计算xz平面投影线长度
 
 t.y_rad = (t.len_xz > 0.0000039) // 去噪声
     ? -math.atan2(t.vector_diff.x, -t.vector_diff.z)
