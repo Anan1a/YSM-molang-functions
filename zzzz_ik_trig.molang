@@ -1,0 +1,29 @@
+//
+
+t.name1 = args[0];
+t.name2 = args[1];
+t.name3 = args[2];
+t.name4 = args[3];
+
+// 坐标
+t.pos1 = fn.mc_get_absPos(t.name1); // 起始坐标
+t.pos2 = fn.mc_get_absPos(t.name2); // 关节坐标
+t.pos3 = fn.mc_get_absPos(t.name3); // 末端坐标
+t.pos_target = fn.mc_get_absPos(t.name4); // 目标坐标
+
+// 长度
+t.line1 = fn.math_ext_vector_3_dist(t.pos2, t.pos1); // 骨骼1长度
+t.line2 = fn.math_ext_vector_3_dist(t.pos2, t.pos3); // 骨骼2长度
+t.line_target = fn.math_ext_vector_3_dist(t.pos1, t.pos_target); // 目标长度
+
+// 限制长度
+t.line3 = math.clamp(t.line_target, math.abs(t.line1 - t.line2), t.line1 + t.line2); //可到达长度
+
+// 角度
+t.degrees1 = -fn.math_ext_angle_triangleDag(t.line2, t.line1, t.line3);
+t.degrees2 = -fn.math_ext_angle_triangleDag(t.line3, t.line1, t.line2) + 180;
+
+t.result.a_x = t.degrees1;
+t.result.b_x = t.degrees2;
+
+return t.result;

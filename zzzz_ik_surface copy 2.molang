@@ -1,0 +1,68 @@
+t.a = args[0];
+t.b = args[1];
+t.c = args[2];
+
+// 1. 构建局部 Y
+t.ab = fn.math_ext_vector_3_sub(t.b, t.a);
+t.local_neg_y = fn.math_ext_vector_3_norm(t.ab);
+t.local_y = fn.math_ext_vector_3_smul(t.local_neg_y, -1);
+
+// 2. 构建局部 X
+t.ac = fn.math_ext_vector_3_sub(t.c, t.a);
+t.dot = fn.math_ext_vector_3_dot(t.ac, t.local_y);
+t.perp = fn.math_ext_vector_3_sub(t.ac, fn.math_ext_vector_3_smul(t.local_y, t.dot));
+
+t.len_perp = fn.math_ext_vector_3_len(t.perp);
+(t.len_perp < 0.000001) ? {
+    t.local_x = fn.math_ext_vector_3(1, 0, 0);
+    t.dot_x = fn.math_ext_vector_3_dot(t.local_x, t.local_y);
+    t.local_x = fn.math_ext_vector_3_sub(t.local_x, fn.math_ext_vector_3_smul(t.local_y, t.dot_x));
+    t.local_x = fn.math_ext_vector_3_norm(t.local_x);
+} : {
+    t.local_x = fn.math_ext_vector_3_norm(t.perp);
+};
+
+// 3. 构建局部 Z，并与三角形法线对齐
+t.local_z_candidate = fn.math_ext_vector_3_cross(t.local_x, t.local_y);
+t.tri_normal = fn.math_ext_vector_3_cross(t.ab, t.ac);
+t.tri_normal = fn.math_ext_vector_3_norm(t.tri_normal);
+
+t.dot_z = fn.math_ext_vector_3_dot(t.local_z_candidate, t.tri_normal);
+t.local_z = (t.dot_z < 0)
+    ? fn.math_ext_vector_3_smul(t.local_z_candidate, -1)
+    : t.local_z_candidate;
+
+// 4. 计算 XYZ 欧拉角
+t.x_z = t.local_x.z;
+t.y_z = t.local_y.z;
+t.z_z = t.local_z.z;
+t.x_y = t.local_x.y;
+t.x_x = t.local_x.x;
+
+t.ry_rad = math.asin(-t.x_z);
+t.cos_ry = math.cos(t.ry_rad);
+
+(math.abs(t.cos_ry) > 0.000001) ? {
+    t.rx_rad = math.atan2(t.y_z, t.z_z);
+    t.rz_rad = math.atan2(t.x_y, t.x_x);
+} : {
+    t.rx_rad = math.atan2(-t.local_y.x, t.local_y.y);
+    t.rz_rad = 0;
+};
+
+// 5. 转角度
+t.euler_x = fn.math_ext_angle_cvt_rad2deg(t.rx_rad);
+t.euler_y = fn.math_ext_angle_cvt_rad2deg(t.ry_rad);
+t.euler_z = fn.math_ext_angle_cvt_rad2deg(t.rz_rad);
+
+//6. 关键修复：根据左手系调整 yaw 符号（常见需求）
+// 因为 -Z 是前，标准 atan2 假设 +Z 是前，所以 yaw 可能反了
+t.euler_y = -t.euler_y;
+
+t.result = fn.math_ext_vector_3(
+    t.euler_x,
+    t.euler_y-90,
+    t.euler_z
+);
+
+return t.result;

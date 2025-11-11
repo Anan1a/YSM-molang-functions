@@ -1,0 +1,61 @@
+// 输入: a, b, c (vector3)
+t.a = args[0];
+t.b = args[1];
+t.c = args[2];
+
+// 1. 构建局部坐标系
+t.ab = fn.math_ext_vector_3_sub(t.b, t.a);
+t.local_neg_y = fn.math_ext_vector_3_norm(t.ab);
+t.local_y = fn.math_ext_vector_3_smul(t.local_neg_y, -1);
+
+t.ac = fn.math_ext_vector_3_sub(t.c, t.a);
+t.dot = fn.math_ext_vector_3_dot(t.ac, t.local_y);
+t.proj_y = fn.math_ext_vector_3_smul(t.local_y, t.dot);
+t.perp = fn.math_ext_vector_3_sub(t.ac, t.proj_y);
+
+t.len_perp = fn.math_ext_vector_3_len(t.perp);
+(t.len_perp < 0.000001) ? {
+    // fallback to world +X
+    t.world_x = fn.math_ext_vector_3(1, 0, 0);
+    t.dot_x = fn.math_ext_vector_3_dot(t.world_x, t.local_y);
+    t.proj_x = fn.math_ext_vector_3_smul(t.local_y, t.dot_x);
+    t.local_x = fn.math_ext_vector_3_sub(t.world_x, t.proj_x);
+    t.local_x = fn.math_ext_vector_3_norm(t.local_x);
+} : {
+    t.local_x = fn.math_ext_vector_3_norm(t.perp);
+};
+
+t.local_z = fn.math_ext_vector_3_cross(t.local_x, t.local_y);
+t.local_z = fn.math_ext_vector_3_norm(t.local_z);
+
+// 2. 计算 XYZ 欧拉角（弧度）
+t.x_z = t.local_x.z;
+t.y_z = t.local_y.z;
+t.z_z = t.local_z.z;
+t.x_y = t.local_x.y;
+t.x_x = t.local_x.x;
+
+t.ry_rad = math.asin(-t.x_z);
+t.cos_ry = math.cos(t.ry_rad);
+
+(math.abs(t.cos_ry) > 0.000001) ? {
+    t.rx_rad = math.atan2(t.y_z, t.z_z);
+    t.rz_rad = math.atan2(t.x_y, t.x_x);
+} : {
+    // gimbal lock
+    t.rx_rad = math.atan2(-t.local_y.x, t.local_y.y);
+    t.rz_rad = 0;
+};
+
+// 3. 转角度
+t.euler_x = fn.math_ext_angle_cvt_rad2deg(t.rx_rad);
+t.euler_y = fn.math_ext_angle_cvt_rad2deg(t.ry_rad);
+t.euler_z = fn.math_ext_angle_cvt_rad2deg(t.rz_rad);
+
+t.result = fn.math_ext_vector_3(
+    t.euler_x,
+    t.euler_y-90,
+    t.euler_z
+);
+
+return t.result;

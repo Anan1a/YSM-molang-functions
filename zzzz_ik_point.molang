@@ -1,0 +1,23 @@
+//
+
+t.name1 = args[0];
+t.name2 = args[1];
+
+// 坐标
+t.point = fn.mc_get_absPos(t.name1); // 起始点
+t.point_target = fn.mc_get_absPos(t.name2); // 目标点
+
+t.vector_diff = fn.math_ext_vector_3_sub(t.point_target, t.point);
+t.degrees = fn.math_ext_angle_vector2degXZ(t.vector_diff);
+
+// v.degrees_point.x = t.degrees.x;
+// v.degrees_point.y = t.degrees.y;
+// v.degrees_point.z = t.degrees.z;
+
+t.result = fn.math_ext_vector_3(
+    t.degrees.x,
+    t.degrees.y,
+    t.degrees.z
+);
+
+return t.result;

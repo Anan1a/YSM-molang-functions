@@ -1,0 +1,65 @@
+t.a = args[0];
+t.b = args[1];
+t.c = args[2];
+
+// 1. 局部 +Y = normalize(b - a)
+t.ab = fn.math_ext_vector_3_sub(t.b, t.a);
+t.local_y = fn.math_ext_vector_3_norm(t.ab);
+
+// 2. 局部 X：ac 在垂直于 Y 的平面上的投影
+t.ac = fn.math_ext_vector_3_sub(t.c, t.a);
+t.dot = fn.math_ext_vector_3_dot(t.ac, t.local_y);
+t.perp = fn.math_ext_vector_3_sub(t.ac, fn.math_ext_vector_3_smul(t.local_y, t.dot));
+
+t.len_perp = fn.math_ext_vector_3_len(t.perp);
+
+// fallback X if degenerate
+t.wx = fn.math_ext_vector_3(1, 0, 0);
+t.d = fn.math_ext_vector_3_dot(t.wx, t.local_y);
+t.fallback_x = fn.math_ext_vector_3_norm(
+    fn.math_ext_vector_3_sub(t.wx, fn.math_ext_vector_3_smul(t.local_y, t.d))
+);
+t.normal_x = fn.math_ext_vector_3_norm(t.perp);
+t.local_x = (t.len_perp < 0.000001) ? t.fallback_x : t.normal_x;
+
+// 3. 局部 Z = X × Y（右手系）
+t.local_z = fn.math_ext_vector_3_cross(t.local_x, t.local_y);
+t.local_z = fn.math_ext_vector_3_norm(t.local_z);
+
+// 4. 提取旋转矩阵列（local_x, local_y, local_z 是世界坐标下的局部轴）
+t.x_z = t.local_x.z;
+t.y_z = t.local_y.z;
+t.z_z = t.local_z.z;
+t.x_y = t.local_x.y;
+t.x_x = t.local_x.x;
+
+// 5. 计算 XYZ 欧拉角（弧度）
+t.ry_rad = math.asin(-t.x_z);  // from R[2][0] = -sin(ry)
+t.cos_ry = math.cos(t.ry_rad);
+
+// Precompute both branches for gimbal lock
+t.rx_a = math.atan2(t.y_z, t.z_z);
+t.rz_a = math.atan2(t.x_y, t.x_x);
+t.rx_b = math.atan2(-t.local_y.x, t.local_y.y);
+t.rz_b = 0;
+
+t.rx_rad = (math.abs(t.cos_ry) > 0.000001) ? t.rx_a : t.rx_b;
+t.rz_rad = (math.abs(t.cos_ry) > 0.000001) ? t.rz_a : t.rz_b;
+
+// 6. 转角度
+t.euler_x = fn.math_ext_angle_cvt_rad2deg(t.rx_rad); // pitch
+t.euler_y = fn.math_ext_angle_cvt_rad2deg(t.ry_rad); // yaw
+t.euler_z = fn.math_ext_angle_cvt_rad2deg(t.rz_rad); // roll
+
+// 7. 修复 yaw 符号（因世界系 -Z 为前，标准公式假设 +Z 为前）
+t.euler_y = -t.euler_y;
+
+// 8. 返回 XYZ 欧拉角
+
+t.result = fn.math_ext_vector_3(
+    t.euler_x,
+    t.euler_y-90,
+    t.euler_z
+);
+
+return t.result;

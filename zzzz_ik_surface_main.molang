@@ -1,0 +1,14 @@
+// 输入: a, b, c (vector3)
+
+t.name1 = args[0];
+t.name2 = args[1];
+t.name3 = args[2];
+
+// 坐标
+t.pos1 = fn.mc_get_absPos(t.name1); // 旋转坐标
+t.pos2 = fn.mc_get_absPos(t.name2); // 轴线坐标
+t.pos3 = fn.mc_get_absPos(t.name3); // 第三点坐标
+
+t.result = fn.zzzz_ik_surface(t.pos1, t.pos2, t.pos3);
+
+return t.result;
